@@ -11,10 +11,10 @@
 <body>
 <div class="person_infor">
     <div class="person_left">
-        <div><img src="/static/images/head.png"></div>
+        <div><img src="{:substr($users['headimgurl'],0,4)=='http'?$users['headimgurl']:getenv('GER_URL').$users['headimgurl']}"></div>
         <div>
-            <div>王小艺</div>
-            <div><span class="checkdate">2018-08-13</span>（星期<span class="week">四</span>）</div>
+            <div id="user_id" user_id="{$users['id']}">{$users['name']}</div>
+            <div style="width: 130px"><span class="checkdate">2018-08-13</span>（星期<span class="week">四</span>）</div>
         </div>
     </div>
     <div class="person_right">
@@ -23,8 +23,8 @@
 </div>
 <div class="calendar" id="calendar"></div>
 <div class="static_content">
-    <div><img src="/static/images/static_time1.png">今日打卡2次</div>
-    <div class="clock_static">
+    <div><img src="/static/images/static_time1.png">今日打卡<span id="card_count">0</span>次</div>
+    <div class="clock_static" id="clock_static">
         <div class="onduty">
             <div class="left_text"><span>上</span></div>
             <div class="right_text">
@@ -32,11 +32,12 @@
                     <span>上班打卡&emsp;09:00</span>
                 </div>
                 <!--已打卡-->
-                <div class="hasclock">
-                    <div>打卡时间：08:46:36</div>
-                    <div class="position hasposition"><img src="/static/images/hasposition.png">某某某某附属小学</div>
-                    <div class="normal">正常</div>
+                <div class="hasclock to_work_card" style="display: none">
+                    <div>打卡时间：<span id="to_work_time">08:46:36</span></div>
+                    <div class="position hasposition"><img src="/static/images/hasposition.png"><span id="to_work_address">某某某某附属小学</span></div>
+                    <div class="normal" id="to_work_status">正常</div>
                 </div>
+                <!--<div class="lack" id="to_work_que" style="display: none">缺卡</div>-->
             </div>
         </div>
         <div class="topline"></div>
@@ -49,14 +50,21 @@
                     <span>下班打卡&emsp;18:00</span>
                 </div>
                 <!--已打卡-->
-                <div class="hasclock">
-                    <div>打卡时间：18:46:36</div>
-                    <div class="position hasposition" style="text-align: left"><img src="/static/images/hasposition.png">某某某某附属小学</div>
-                    <div class="normal">正常</div>
+                <div class="hasclock out_work_card" style="display: none">
+                    <div>打卡时间：<span id="out_work_time">18:46:36</span></div>
+                    <div class="position hasposition" style="text-align: left"><img src="/static/images/hasposition.png"><span id="out_work_address">某某某某附属小学</span></div>
+                    <div class="normal" id="out_work_status">正常</div>
                 </div>
+                <!--<div class="lack" id="out_work_que" style="display: none">缺卡</div>-->
             </div>
         </div>
     </div>
+    <div class="noclock" id="noclock">
+        <div><img src="/static/images/none.png"></div>
+        <div>当天没有打卡记录</div>
+    </div>
+
+
 </div>
 <!--选择月历弹框-->
 <div class="box"></div>

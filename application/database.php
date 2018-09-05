@@ -13,15 +13,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '127.0.0.1',
+    'hostname'        => \think\Env::get('MYSQL_HOSTNAME'),
     // 数据库名
-    'database'        => 'kqdk',
-//    'database'        => 'kaoqin_webuildu',
+    'database'        => \think\Env::get('MYSQL_DATABASE'),
     // 用户名
-//    'username'        => 'kaoqin_webuildu',
-    'username'        => 'root',
+    'username'        => \think\Env::get('MYSQL_USER'),
     // 密码
-    'password'        => 'root',
+    'password'        => \think\Env::get('MYSQL_PASSWORD'),
     // 端口
     'hostport'        => '3306',
     // 连接dsn

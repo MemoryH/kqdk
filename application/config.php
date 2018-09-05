@@ -15,8 +15,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 应用调试模式
-
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -211,6 +210,7 @@ return [
         'type'           => '',
         // 是否自动开启 SESSION
         'auto_start'     => true,
+        'expire'=>60
     ],
 
     // +----------------------------------------------------------------------
@@ -235,8 +235,11 @@ return [
 
     //分页配置
     'paginate'               => [
-        'type'      => 'bootstrap',
+        'type'      => 'page\Page',
         'var_page'  => 'page',
         'list_rows' => 15,
+    ],
+    'PHPExcel'               => [
+        'type'      => 'PHPExcel\Classes\PHPExcel',
     ],
 ];
